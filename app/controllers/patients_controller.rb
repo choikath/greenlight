@@ -65,9 +65,8 @@ class PatientsController < ApplicationController
 
   # DELETEALL /patients.json
   def clear_all
-    @patients.where(active?: true).each do |patient|
+    Patient.where(active?: true).each do |patient|
       patient.update_attributes(active?: false) 
-      patient
     end
     respond_to do |format|
       format.html { redirect_to patients_path, notice: 'All patients were successfully cleared.' }
