@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :services
   resources :patients
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,9 +7,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'patients#index'
-
+  get 'clear_all' => 'patients#clear_all'
   #get 'leaveNote' => 'patients#leaveNote'
-  
+  #get 'clear_all' => 'patients#clear_all'
   
   # Example of regular route:
   #get 'products/:id' => 'catalog#view'
@@ -20,16 +21,16 @@ Rails.application.routes.draw do
   #   resources :products
 
   # Example resource route with options:
-  #   resources :products do
+  resources :patients do
   #     member do
   #       get 'short'
   #       post 'toggle'
   #     end
   #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+       collection do
+         get 'clear_all'
+       end
+     end
 
   # Example resource route with sub-resources:
   #   resources :products do

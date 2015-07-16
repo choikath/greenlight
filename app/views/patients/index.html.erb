@@ -10,27 +10,115 @@
     <tr>
       <th>Room</th>
       <th>Patient (FL)</th>
-      <th>Est. date of d/c (per MD)</th>
-      <!--<th>SW tasks</th>-->
-      <!--<th>PT tasks</th>-->
-      <!--<th>Pharmacy tasks</th>-->
-      <th>MD Completed?</th>
-      <th colspan="3"></th>
+      <!--<th>Est. date of d/c (per MD)</th>-->
+      <th>MD done?</th>
+      <th>CRC:</th>
+      <th>SW:</th>
+      <th>Pharm:</th>
+      <th>MD:</th>
+      <th colspan="2"></th>
       <!--<th>Leave note for d/c huddle</th>-->
     </tr>
   </thead>
 
   <tbody>
     <% @patients.order(:room).each do |patient| %>
+      <% if patient.active? == true %>
       <tr>
         <td><%= patient.room %></td>
         <td><%= patient.initials %></td>
-        <td><%= patient.estimatedate %></td>
+        <!--<td><%= patient.estimatedate %></td>-->
         <td><%= if patient.completedbymd ==true
          "Y"
         end
         %></td>
-        <td><%= link_to 'View', patient %></td>
+        
+        
+        <!--//-- CRC tasks --//-->
+        <td>
+        <% if patient.homeo2 == true %>
+        [ ] Home O2
+        <br>
+        <% end %>
+        <% if patient.tubefeeds == true %>
+        [ ] Tube feeds
+        <br>
+        <% end  %>
+        <% if patient.walker == true %>
+        [ ] Walker
+        <br>
+        <% end  %>
+        <% if patient.otherequip == true %>
+        [ ] Other medical equipment
+        <br>
+        <% end  %>
+        <% if patient.homecare == true %>
+        [ ] Home care
+        <br>
+        <% end %>
+        <% if patient.transport == true %>
+        [ ] Transportation
+        <br>
+        <% end  %>
+        </td>
+        
+        <!--//-- SW tasks --//-->
+        <td>
+        <% if patient.snfpsych == true %>
+        [ ] SNF/Psych/Rehab
+        <% end %>
+        </td>
+
+        <!--//-- Pharmacy tasks --//-->
+        <td>
+        <% if patient.teaching == true %>
+        [ ] Med teaching
+        <br>
+        <% end %>
+        <% if patient.finassit == true %>
+        [ ] Med financial assistance
+        <br>
+        <% end %>
+        <% if patient.conciergerx == true %>
+        [ ] Rx for concierge pharmacy service
+        <br>
+        <% end %>
+        </td>
+        
+        
+        <!--//-- MD tasks --//-->
+        <td><% if patient.completedbymd == true %>
+          <% if patient.ptnotified == false %>
+        [ ] Tell pt about d/c at noon
+        <br>
+        <% end  %>
+        <% if patient.ptnotified == false %>
+        [ ] Tell pt about d/c at noon
+        <br>
+        <% end  %>
+        <% if patient.dcsumm == false %>
+        [ ] D/c summary
+        <br>
+        <% end  %>
+        <% if patient.medrec == false %>
+        [ ] Update med rec
+        <br>
+        <% end  %>
+        <% if patient.appt == false %>
+        [ ] Schedule f/u appt
+        <br>
+        <% end  %>
+        <% if patient.amlabs == false %>
+        [ ] @10pm - put in AM labs for tomorrow
+        <br>
+        <% end  %>    
+        <% if patient.ptorder == false %>
+        [ ] Put in PT order
+        <% end  %>
+        </td>
+        <% end  %>
+        
+        <!--<td><%= link_to 'View', patient %></td>-->
         <td><%= link_to '', edit_patient_path(patient), class:"glyphicon glyphicon-edit" %></td>
         <td><%= link_to '', patient, method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-trash" %></td>
         <!--<td>
@@ -41,8 +129,14 @@
         </td>
       </tr>
     <% end %>
+    <% end %>
   </tbody>
 </table>
+
+<br>
+<p align = "right"><%= link_to 'Clear List', clear_all_patients_path, data: { confirm: 'Are you sure? This clears the entire list.' } %></p>
+        
+
 
 <br>
 

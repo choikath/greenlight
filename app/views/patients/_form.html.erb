@@ -27,6 +27,11 @@
     <%= f.label :"Service Name" %><br>
     <%= f.select(:service_id, [['PPMC Teaching A', 1], ['PPMC Teaching B',2], ['PPMC Teaching C',3], ['PPMC Teaching D', 4], ['PPMC Hospitalist A',5], ['PPMC Hospitalist B', 6], ['PPMC Family Medicine', 7]]) %>
   </div>
+
+  <div class="field">
+    <%= f.label :"PT rec" %><br>
+    <%= f.text_field :ptrec %>
+  </div>
   
 <br>
 

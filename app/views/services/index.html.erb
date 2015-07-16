@@ -18,7 +18,7 @@
       <tr>
         <td><%= service.name %></td>
         <td><%= service.resident %></td>
-        <td><%= link_to " #{ service.patient_ids.count } Patients", service %></td>
+        <td><%= link_to " #{ (Patient.where(service_id: service.id, active?:true)).count } Patients", service %></td>
       </tr>
     <% end %>
   </tbody>
