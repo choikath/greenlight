@@ -25,6 +25,7 @@
 
   <tbody>
     <% @service.patients.order(:room).each do |patient| %>
+      <% if patient.active? == true %>
       <tr>
         <td><%= "*" unless patient.completedbymd == true %></td>
         <td><%= link_to '', edit_patient_path(patient), class:"glyphicon glyphicon-edit" %></td>
@@ -77,6 +78,7 @@
             </td>-->
 
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
