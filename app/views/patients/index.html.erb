@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h3 align="left"><b>Greenlight Patients</b></h3>
-<p><i>-Cupp4S Staff View, All Patients-</i></p>
+<p><i>-Cupp4S Staff View, All Patients-</i> &nbsp&nbsp&nbsp&nbsp&nbsp <i> <%= link_to '(MD view by service)', services_path, class: "btn btn-default" %></i></p>
 <p align = "right"><i> for d/c tomorrow: <%= Date.tomorrow().to_formatted_s(:iso8601) %>  </i></p>
 
 
@@ -88,10 +88,6 @@
         
         <!--//-- MD tasks --//-->
         <td><% if patient.completedbymd == true %>
-          <% if patient.ptnotified == false %>
-        [ ] Tell pt about d/c at noon
-        <br>
-        <% end  %>
         <% if patient.ptnotified == false %>
         [ ] Tell pt about d/c at noon
         <br>
@@ -142,4 +138,6 @@
 
 <%= link_to 'Add Patient Entry', new_patient_path, class:"btn btn-info" %>
 
+<p><br></p>
 
+ 

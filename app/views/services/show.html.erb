@@ -34,10 +34,7 @@
         <td><%= patient.initials %></td>
         <!--<td><%= patient.estimatedate %></td>-->
         <td><% if patient.completedbymd == true %>
-          <% if patient.ptnotified == false %>
-        [ ] Tell pt about d/c at noon
-        <br>
-        <% end  %>
+
         <% if patient.ptnotified == false %>
         [ ] Tell pt about d/c at noon
         <br>
