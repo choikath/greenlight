@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716170446) do
+ActiveRecord::Schema.define(version: 20150721223221) do
 
   create_table "patients", force: :cascade do |t|
     t.string   "room"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150716170446) do
     t.string   "service_id"
     t.text     "ptrec"
     t.boolean  "active?"
+    t.text     "noteToStaff"
   end
 
   create_table "services", force: :cascade do |t|

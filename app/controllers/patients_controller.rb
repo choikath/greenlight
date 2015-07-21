@@ -27,7 +27,6 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     # @service = Service.find(:service_id)
     
-    
     respond_to do |format|
       if @patient.save
         format.html { redirect_to patients_path, notice: 'Patient was successfully created.' }
@@ -42,9 +41,10 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json
   def update
+   
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to patients_path, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient.service, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
@@ -82,6 +82,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:room, :initials, :estimatedate, :ptnotified, :dcsumm, :medrec, :appt, :amlabs, :ptorder, :homeo2, :tubefeeds, :walker, :otherequip, :homecare, :snfpsych, :transport, :teaching, :finassit, :conciergerx, :completedbymd, :service_id, :ptrec)
+      params.require(:patient).permit(:room, :initials, :estimatedate, :ptnotified, :dcsumm, :medrec, :appt, :amlabs, :ptorder, :homeo2, :tubefeeds, :walker, :otherequip, :homecare, :snfpsych, :transport, :teaching, :finassit, :conciergerx, :completedbymd, :service_id, :ptrec, :noteToStaff)
     end
 end
